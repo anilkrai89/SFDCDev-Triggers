@@ -72,6 +72,29 @@ public class OppTriggerHandler {
         update toUpdateAccount;
         
     }
+
+    //when updating opportunity,it should update account
+    //Scenario 4 :Write a trigger that updates the "City" field in an Account when the
+    //same field is updated in an Opportunity.
     
+    public static void afterUpdateOnOpportunuty(list<opportunity> oplist,map<id,opportunity> oldValue){
+        
+       // list<ID> AccID =new list<id>();
+        Map<id,string> mapOfAccCity = new Map<id,string>();
+        for(Opportunity op :oplist){
+            if(op.City__c!= oldValue.get(op.id).City__c){
+                //AccID.add(op.Accountid);
+                mapOfAccCity.put(op.Accountid,op.City__c);
+
+            }
+        }
+        list<Account> accToUpdate =[select billingcity from Account where id in :mapOfAccCity.keyset()];
+        for(Account a :accToUpdate ){
+            a.billingcity =mapOfAccCity.get(a.id);
+        }
+        if(!accToUpdate.isEmpty()){
+            update accToUpdate;
+        }
+    }
 
 }
