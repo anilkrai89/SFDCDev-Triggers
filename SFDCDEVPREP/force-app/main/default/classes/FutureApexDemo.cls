@@ -23,3 +23,6 @@ public with sharing class FutureApexDemo {
         System.debug('this is only demo');
     }
 }
+
+//To call the future method,create instance of the class so it wull call contructor in the class
+//FutureApexDemo fd =new FutureApexDemo();
