@@ -6,7 +6,7 @@ public with sharing class FutureApexDemo {
         demo3();
         demo4();
     }
-  
+  @future
     public static void demo1(){
         System.debug('this is 1st demo');
     }
@@ -19,6 +19,7 @@ public with sharing class FutureApexDemo {
     public static void demo4(){
         System.debug('this is 4th demo');
     }
+    @future
     public static void demo(){
         System.debug('this is only demo');
     }
